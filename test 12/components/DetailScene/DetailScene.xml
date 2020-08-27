@@ -1,0 +1,38 @@
+<component name="DetailScene" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/DetailScene/DetailScene.brs"/>
+    
+  <interface>
+        <field id="content" type="node" alwaysnotify="true"  onChange="OnContentChanged"/>
+        <field id="itemFocused" type="integer"/>
+        <field id = "back" type = "string" alwaysnotify="true"/>
+        <field id="actionButtonPlay" type="string" alwaysnotify="true"/>
+  </interface>
+    <children>
+    <Label 
+      id = "titleFilmLabel"
+      translation = "[ 100, 120 ]" 
+      horizAlign = "center" 
+      font = "font:LargeBoldSystemFont"
+    />
+
+    <Label 
+      id = "descriptionFilmLabel" 
+      translation = "[ 100, 230 ]" 
+      horizAlign = "left" 
+      width = "700"
+      wrap = "true"
+      font = "font:MediumBoldSystemFont"
+    />  
+
+    <Label 
+      id = "parametersFilmLabel" 
+      translation = "[ 100, 190 ]" 
+      horizAlign = "left" 
+      width = "700"
+      wrap = "true"
+      font = "font:MediumBoldSystemFont"
+    />  
+    <ButtonGroup id = "buttonGroup"/>
+
+    </children>
+</component>

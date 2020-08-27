@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+<component name="MainScene" extends="Scene" initialFocus = "rowList" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<!-- importing main handler -->
+
+  <interface>
+   <field id = "content" type = "node" />
+   <field id = "itemFocused" type="intarray" alwaysNotify="true" alias="rowList.rowItemFocused" onChange="OnItemFocused"/>
+   <field id ="pressBack" type="string" alwaysnotify="true" alias = "DetailScene.back" onChange = "returnToTheHomeScreen"/>
+   <field id="action" type="string" alwaysnotify="true" alias="DetailScene.actionButtonPlay" onChange = "playFilm" />
+  </interface>
+   <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+ 
+
+  <children >
+  <DetailScene 
+    id="DetailScene"
+    visible="false"
+    translation="[0,0]" 
+  />
+  <Video
+    id="videoPlayer"
+    visible="false"
+    translation="[0, 0]"
+  />
+
+  <Timer
+    id="timer"
+  />
+ 
+  <RowList 
+    id = "rowList" 
+    itemComponentName = "RowListItem"
+    translation = "[ 130, 700 ]" 
+    itemSpacing = "[ 20, 100 ]"
+    itemSize = "[ 1800, 250 ]" 
+    rowItemSpacing = "[ [20, 0] ]"
+    rowLabelOffset = "[ [0, 30] ]"
+    rowItemSize = "[ [320, 250] ]" 
+    showRowLabel = "[ true ]" 
+    drawFocusFeedback = "false" 
+    vertFocusAnimationStyle = "fixedFocusWrap" 
+    rowFocusAnimationStyle = "fixedFocusWrap" />
+</children>
+</component>

@@ -1,0 +1,19 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "brightscript",
+            "request": "launch",
+            "name": "BrightScript Debug: Launch",
+            "stopOnEntry": false,
+            "host": "192.168.2.118",
+            "password": "79oroteb",
+            "rootDir": "/Users/dreamstore/Desktop/RokuApllication2/test 12",
+            "enableDebuggerAutoRecovery": false,
+            "stopDebuggerOnAppExit": false
+        }
+    ]
+}
