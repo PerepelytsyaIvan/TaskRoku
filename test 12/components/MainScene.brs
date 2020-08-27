@@ -6,11 +6,17 @@ function init()
     m.detailScene = m.top.findNode("DetailScene")
     m.videoPlayer = m.top.findNode("videoPlayer")
     m.rowList.observeField("itemSelected","onItemSelected")
-    configurationTimer()
     m.url = "http://hip-fusion-235118.appspot.com/api/v1/feed/group/home?nsTags=ga&appversion=1.0.68&platform=roku"
     loadFeed(m.url)
     m.rowList.setFocus(true)
+    m.videoPlayer.observeField("state", "onChangeState")
 end function
+
+sub onChangeState()
+  if m.videoPlayer.state = "playing"
+    m.videoPlayer.visible = true
+  end if
+end sub
 
 sub onItemSelected()
       m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
@@ -28,8 +34,6 @@ sub returnToTheHomeScreen()
   launchTheMovie(title)
     m.rowList.setFocus(true)
     m.rowList.visible = true
-
-    m.timer.control = "start"
 end sub
 
 sub OnItemFocused()
@@ -48,7 +52,6 @@ sub OnItemFocused()
     m.detailScene.content = m.section
     m.detailScene.visible = true
     m.videoContent.streamformat = "hls"
-    m.timer.control = "start"
     m.videoPlayer.content = m.videoContent
     m.videoPlayer.visible = false
     m.videoPlayer.control = "play"
@@ -65,7 +68,6 @@ function getAuthData(id as string) as string
     end Function
 
 sub playFilm()
-  m.timer.control = "stop"
   m.detailScene.visible = false
   m.videoContent.url = m.film.VideoHLSURL
   m.videoPlayer.content = m.videoContent
@@ -74,7 +76,6 @@ sub playFilm()
 end sub
 
 sub launchTheMovie(title)
-  ? "збереження кольору"
       idFilm = m.film.id
       reg = CreateObject("roRegistry")
       sec = CreateObject("roRegistrySection", "Authentication")
@@ -88,20 +89,6 @@ sub launchTheMovie(title)
     end if
     sec.Write(idFilm, color)
     sec.Flush()
-end sub
-
-sub configurationTimer()
-    m.timer = m.top.findNode("timer")
-    m.timer.duration = "1"
-    m.timer.observeField("fire", "videoLaunch")
-    m.timer.repeat = true
-end sub
-
-sub videoLaunch()
-    if m.videoPlayer.state = "playing"
-      m.timer.control = "stop"
-      m.videoPlayer.visible = true
-    end if
 end sub
 
 sub loadFeed(url)
