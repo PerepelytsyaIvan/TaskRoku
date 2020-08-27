@@ -8,7 +8,6 @@ sub init()
     port = CreateObject("roMessagePort")
     res.SetPort(port)
     res.setURL(url)
-  
     res.EnableEncodings(true)
     res.SetCertificatesFile("common:/certs/ca-bundle.crt")
     res.InitClientCertificates()
@@ -16,7 +15,7 @@ sub init()
     if res.AsyncGetToString()
         while true
             msg = Wait (0, port)
-            if Type (msg) = "roUrlEvent"
+            if Type(msg) = "roUrlEvent"
                 resJson = invalid
                 if msg.GetResponseCode() = 200
                     resJson = ParseJson(msg.GetString())

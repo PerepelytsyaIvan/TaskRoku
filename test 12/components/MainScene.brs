@@ -5,11 +5,22 @@ function init()
     m.rowList = m.top.findNode("rowList")
     m.detailScene = m.top.findNode("DetailScene")
     m.videoPlayer = m.top.findNode("videoPlayer")
+    m.rowList.observeField("itemSelected","onItemSelected")
     configurationTimer()
     m.url = "http://hip-fusion-235118.appspot.com/api/v1/feed/group/home?nsTags=ga&appversion=1.0.68&platform=roku"
     loadFeed(m.url)
     m.rowList.setFocus(true)
 end function
+sub onItemSelected()
+      m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
+         m.section.getChild(m.rowList.rowItemFocused[1]).isHiden = true
+         m.section.getChild(m.rowList.rowItemFocused[1]).focus = true
+         m.detailScene.content = m.section
+         m.rowList.visible = false
+         m.videoPlayer.visible = false
+         m.videoPlayer.control = "stop"
+         m.detailScene.setFocus(true)
+end sub
 
 sub returnToTheHomeScreen()
     m.rowList.setFocus(true)
@@ -84,6 +95,7 @@ sub launchTheMovie(title)
   'end if
 end sub
 
+  'fix
 sub configurationTimer()
     m.timer = m.top.findNode("timer")
     m.timer.duration = "1"
@@ -109,18 +121,20 @@ sub onFeedResponse(obj)
     m.rowList.content = m.networking.content
 end sub
 
+'fix
 function onKeyEvent(key, press) as Boolean
     if key = "OK"
-      if m.rowList.visible = true 
-         m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
-         m.section.getChild(m.rowList.rowItemFocused[1]).isHiden = true
-         m.section.getChild(m.rowList.rowItemFocused[1]).focus = true
-         m.detailScene.content = m.section
-         m.rowList.visible = false
-         m.videoPlayer.visible = false
-         m.videoPlayer.control = "stop"
-         m.detailScene.setFocus(true)
-      end if
+      
+      ' if m.rowList.visible = true 
+      '    m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
+      '    m.section.getChild(m.rowList.rowItemFocused[1]).isHiden = true
+      '    m.section.getChild(m.rowList.rowItemFocused[1]).focus = true
+      '    m.detailScene.content = m.section
+      '    m.rowList.visible = false
+      '    m.videoPlayer.visible = false
+      '    m.videoPlayer.control = "stop"
+      '    m.detailScene.setFocus(true)
+      ' end if
     end if
     if key <> "OK"
       if m.rowList.visible = true
