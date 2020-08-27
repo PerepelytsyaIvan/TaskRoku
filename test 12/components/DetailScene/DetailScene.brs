@@ -35,7 +35,7 @@
         itemFocused = m.top.itemFocused
         film = content.getChild(itemFocused)
         m.buttonGrup.visible = film.isHiden
-        m.buttonGrup.setFocus(film.focus)
+        m.buttonGrup.setFocus(false)
         if film.Color = "#cf4017"
             m.titleButton = "Remove from favorites"
         else
@@ -43,10 +43,10 @@
         end if
         m.buttonGrup.buttons = ["Play", m.titleButton]
         m.titleFilmLabel.text = film.title
-        ? film.Color
         m.titleFilmLabel.color = film.Color
         m.descriptionFilmLabel.text = film.DESCRIPTION
-        parameters = film.Rating + "|" + film.ReleaseYear + "|" + content.title + "|" + film.Duration + "m"
+        duration = film.Duration \ 60
+        parameters = film.Rating + "|" + film.ReleaseYear + "|" + content.title + "|" + str(duration) + "m"
         m.parametersFilmLabel.text = parameters
     end sub
 
@@ -70,11 +70,11 @@
         if key = "left"
             m.buttonGrup.focusButton = m.buttonGrup.buttonFocused - 1
         end if
-    end if
-    if key = "back"
-        m.buttonGrup.visible = false
-        transitionBack()
-      return true
+        if key = "back"
+            m.buttonGrup.visible = false
+            transitionBack()
+        return true
+        end if
     end if
         return false
     end function

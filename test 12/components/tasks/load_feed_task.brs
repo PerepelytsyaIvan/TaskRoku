@@ -14,7 +14,7 @@ sub init()
 
     if res.AsyncGetToString()
         while true
-            msg = Wait (0, port)
+            msg = Wait(0, port)
             if Type(msg) = "roUrlEvent"
                 resJson = invalid
                 if msg.GetResponseCode() = 200
@@ -36,7 +36,7 @@ function onFeed(obj)
         m.sectionContent = m.content.createChild("category_node")
         m.sectionContent.TITLE = item.header
         for each i in item.results
-        data = m.sectionContent.createChild("category_node")
+          data = m.sectionContent.createChild("category_node")
           name = i.title
           data.title = name.llTitle
           data.HDPosterUrl = name.llLsPosterURL
@@ -44,7 +44,7 @@ function onFeed(obj)
           data.Description = name.llDescription
           data.ReleaseYear = name.llReleaseYear
           data.Categories = item.header
-          data.Duration = str(name.llDuration)
+          data.Duration = name.llDuration
           data.Rating = name.llRating
           data.TrailerURL = name.llTrailerURL
           data.VideoHLSURL = name.llVideoHLSURL

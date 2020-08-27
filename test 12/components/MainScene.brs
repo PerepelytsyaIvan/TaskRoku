@@ -11,6 +11,7 @@ function init()
     loadFeed(m.url)
     m.rowList.setFocus(true)
 end function
+
 sub onItemSelected()
       m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
          m.section.getChild(m.rowList.rowItemFocused[1]).isHiden = true
@@ -23,12 +24,12 @@ sub onItemSelected()
 end sub
 
 sub returnToTheHomeScreen()
+  title = m.top.pressBack
+  launchTheMovie(title)
     m.rowList.setFocus(true)
     m.rowList.visible = true
-    title = m.top.pressBack
-    launchTheMovie(title)
+
     m.timer.control = "start"
- 
 end sub
 
 sub OnItemFocused()
@@ -73,29 +74,22 @@ sub playFilm()
 end sub
 
 sub launchTheMovie(title)
-    ' if title = "Play"
-
-    ' else
+  ? "збереження кольору"
       idFilm = m.film.id
       reg = CreateObject("roRegistry")
       sec = CreateObject("roRegistrySection", "Authentication")
       id = m.top.focusButton
       color = ""
-    
+
     if title = "Add to favorite"
       color = "#fbede4" 
     else
       color = "#cf4017"
     end if
-
-    sec.Delete(idFilm)
     sec.Write(idFilm, color)
     sec.Flush()
-    m.detailScene.setFocus(true)
-  'end if
 end sub
 
-  'fix
 sub configurationTimer()
     m.timer = m.top.findNode("timer")
     m.timer.duration = "1"
@@ -121,27 +115,7 @@ sub onFeedResponse(obj)
     m.rowList.content = m.networking.content
 end sub
 
-'fix
 function onKeyEvent(key, press) as Boolean
-    if key = "OK"
-      
-      ' if m.rowList.visible = true 
-      '    m.detailScene.itemFocused = m.rowList.rowItemFocused[1]
-      '    m.section.getChild(m.rowList.rowItemFocused[1]).isHiden = true
-      '    m.section.getChild(m.rowList.rowItemFocused[1]).focus = true
-      '    m.detailScene.content = m.section
-      '    m.rowList.visible = false
-      '    m.videoPlayer.visible = false
-      '    m.videoPlayer.control = "stop"
-      '    m.detailScene.setFocus(true)
-      ' end if
-    end if
-    if key <> "OK"
-      if m.rowList.visible = true
-        m.rowList.setFocus(true)
-      end if
-    end if
-
   return false
 end function
     
