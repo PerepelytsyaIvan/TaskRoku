@@ -2,7 +2,7 @@
 <component name="category_node" extends="ContentNode">
 	<interface>
 	<field id="ReleaseYear" type="string" />
-	<field id="Duration" type="string" />
+	<field id="Duration" type="integer" />
 	<field id="Rating" type="string" />
 	<field id="TrailerURL" type="string" />
 	<field id="VideoHLSURL" type="string" />

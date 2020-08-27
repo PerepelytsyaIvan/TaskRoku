@@ -7,7 +7,7 @@
 
   <interface>
    <field id = "content" type = "node" />
-   <field id = "itemFocused" type="intarray" alwaysNotify="true" alias="rowList.rowItemFocused" onChange="OnItemFocused"/>
+   <field id = "itemFocused" type="intarray" alias="rowList.rowItemFocused" onChange="OnItemFocused"/>
    <field id ="pressBack" type="string" alwaysnotify="true" alias = "DetailScene.back" onChange = "returnToTheHomeScreen"/>
    <field id="action" type="string" alwaysnotify="true" alias="DetailScene.actionButtonPlay" onChange = "playFilm" />
   </interface>
